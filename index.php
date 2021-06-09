@@ -1,14 +1,30 @@
 <?php
+session_start();
+$erro_local = "";
+$erro_eventos = "";
+$erro = 0;
 
-if (isset($_POST["confirma"])){
+if (isset($_POST["confirma"])) {
+	$_SESSION["data"] 		=$_POST['data'];
+	$_SESSION["hora"]		=$_POST['hora'];
+	$_SESSION["local"]		=$_POST['local'];
+	$_SESSION["eventos"] 	=$_POST['eventos'];
+	$_SESSION["atividades"] =$_POST['atividades'];
+		
 
-	$data =$_POST["data"];
-	$hora =$_POST["hora"];
-	$local=$_POST["local"];
-	$eventos =$_POST["eventos"];
-	$atividades =$_POST["atividades"];
-	$erro = 0;
+	if ($_SESSION["local"] == "") {
+		$erro_local = "<span style='color:blue'>Preencha o campo</span>";
+		$erro ++;
+	} 
 
+	if ($_SESSION["eventos"] == "") {
+		$erro_eventos = "<span style='color:blue'>Preencha o campo</span>";
+		$erro ++;
+	} 
+
+	if ($erro == 0) {
+		Header("Location: ../../Desafio/php/parte2.php");
+	}
 }
 ?>
 
@@ -34,41 +50,42 @@ if (isset($_POST["confirma"])){
 
 				<div class="col-md-6">
 					<label for="inputData4" class="form-label">Data</label>
-					<input type="Data" class="form-control" id="inputData4" name="data">
+					<input type="Data" class="form-control" id="inputData4" name="data" value="<?php if (isset($_SESSION["data"])) echo $_SESSION["data"] ?>">
 					
 				 </div>
 
 			    <div class="col-md-6">
 			        <label for="inputHora4" class="form-label">Hora</label>
-			        <input type="Hora" class="form-control" id="inputHora4" name="hora">
+			        <input type="Hora" class="form-control" id="inputHora4" name="hora" value="<?php if (isset($_SESSION["hora"])) echo $_SESSION["hora"] ?>">
 
 			 	 </div>
 
 				 <div class="col-12">
 				    <label for="inputLocal4" class="form-label">Local</label>
-				    <input type="Local" class="form-control" id="inputLocal4" name="local">
+				    <input type="Local" class="form-control" id="inputLocal4" name="local" value="<?php if (isset($_SESSION["local"])) echo $_SESSION["local"] ?>"><?php echo $erro_local ?> 
 				 </div>
 
 				 <div class="col-12">
 				   	<label for="inputEventos4" class="form-label">Eventos</label>
-				    <input type="Eventos" class="form-control" id="inputEventos4" name="eventos">
+				    <input type="Eventos" class="form-control" id="inputEventos4" name="eventos" value="<?php if (isset($_SESSION["eventos"])) echo $_SESSION["eventos"] ?>"><?php echo $erro_eventos ?>
 				 </div>
 
 				 <div class="col-md-6">
 				    <label for="inputAtividades4" class="form-label">Atividades</label>
-				    <input type="Atividades" class="form-control" id="inputAtividades4" name="atividades">
+				    <input type="Atividades" class="form-control" id="inputAtividades4" name="atividades" value="<?php if (isset($_SESSION["atividades"])) echo $_SESSION["atividades"] ?>">
+
 				</div>
 
 				</br></br>
 
 		    	<div class="col-md-12">
-				 	<a href="php/parte2.php" class="btn btn-primary">Confirma</a>
-				   &nbsp;&nbsp;
-				   <button type="submit" class="btn btn-primary">Apaga</button>
+		    		<input type="submit" class="btn btn-primary" name="confirma" value="Confirma">
+		    		&nbsp;&nbsp;
+		    		<input type="reset" class="btn btn-primary" value="Apaga">
+		    
  				</div>
 	    	</form>
 
 		</fieldset>
 	</body>
 </html>
-
