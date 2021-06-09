@@ -1,31 +1,31 @@
-<!DOCTYPE html>
-<html lang="pt-br">
+<!DOCTYPE html >
+<html  lang = " pt-br " >
 <head>
-	<meta charset="utf-8">
+	<meta charset = "utf-8">
 </head>
 
 <body>
+
 	<?php 
 
-		if(isset($_GET["excluir"])){
+		if(isset($_GET ["excluir"])) {
 
-			$codigo = htmlentities($_GET["excluir"]);
+			$codigo = htmlentities ($_GET["excluir"]);
 
-			require("conecta.php");
+			require ("conecta.php");
 
 			$mysqli->query("delete from agenda where codigo = '$codigo'");
-			echo $mysqli->error;
+			echo  $mysqli->erro;
 
-			if ($mysqli->error==""){
-				echo "EXCLUIDO COM SUCESSO<br/><br/>";
-				echo "<a href='../../Desafio/php/parte2.php'><button>Voltar Página</button></a>";
+			if ($mysqli->erro == "") {
+				echo  "EXCLUIDO COM SUCESSO<br/><br/>" ;
+				echo  "<a href='../../Desafio/php/parte2.php'><button>Voltar Página</button></a>";
 			}
-
 		}
-
 	?>
 
-	<a href='js:deseja_excluir($agenda[codigo])'></a>
-	<script type="text/javascript" src="../../../Desafio/js/newexcluir.js?<?php echo time() ?>"></script>	
+	<A  href = 'js:deseja_excluir($agenda[codigo])'></a>
+	<script  type = "text/javascript" src = "../../Desafio/js/newexcluir.js?
+	<?php  echo  time()?>"></script>	
 </body>
 </html>

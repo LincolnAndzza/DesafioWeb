@@ -2,7 +2,6 @@
 	
 	include 'conecta.php';
 
-
 ?>
 
 
@@ -38,7 +37,7 @@
 				</tr>
 
 				<?php
-					require("../php/conecta.php");
+					require("../../Desafio/php/conecta.php");
 					$busca=$mysqli->query("select * from agenda");
 					while($agenda=$busca->fetch_assoc()) {
 				?>
@@ -52,9 +51,9 @@
 						<td><?php echo $agenda["atividades"];?></td>	
 					
 						<td>
-							<a href='../../Desafio/php/editar.php?editar=$agenda[codigo]'>Editar</a>
+							<a href="../../Desafio/php/editar.php?codigo=<?php echo $agenda["codigo"]; ?>">Editar</a>
 							&nbsp;&nbsp;
-							<a href='../../Desafio/php/excluir.php?excluir=$agenda[codigo]'>Excluir</a>
+							<a href="../../Desafio/php/excluir.php?codigo=<?php echo $agenda["codigo"]; ?>">Excluir</a>
 
 						</td>
 					</tr>
@@ -67,8 +66,6 @@
 <center>
 	<a href="../../Desafio/index.php" class="btn btn-success">Voltar</a>
 </center>
-	
-
 </body>
 </html>
 
